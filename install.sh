@@ -3,24 +3,38 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ENV_FILE="$SCRIPT_DIR/.env"
+cd "$SCRIPT_DIR"
 
-echo ">>> Installing Pi-hole Monitoring Scripts"
-
-# 1. Ensure all scripts in /bin are executable
-chmod +x "$SCRIPT_DIR"/bin/*.sh
-
-# 2. Verify .env exists
-if [ ! -f "$ENV_FILE" ]; then
-  echo ">>> .env file not found!"
-  echo "Please create one by copying .env.example and editing your config:"
-  echo ""
-  echo "cp .env.example .env && nano .env"
+# Verify .env exists
+if [[ ! -f .env ]]; then
+  echo "[✗] Missing .env file."
+  echo "    Please copy .env.example and fill in the required values before running install."
   exit 1
 fi
 
-# 3. Install cron jobs
-(crontab -l 2>/dev/null; echo "*/2 * * * * $SCRIPT_DIR/bin/monitor-pihole.sh") | crontab -
-(crontab -l 2>/dev/null; echo "0 8 1 1,4,7,10 * $SCRIPT_DIR/bin/quarterly-report.sh") | crontab -
+# Verify required values exist in .env
+MISSING_VARS=()
 
-echo ">>> Install complete."
+for var in TELEGRAM_BOT_TOKEN TELEGRAM_CHAT_ID PIHOLE_HOSTNAME; do
+  value=$(grep "^$var=" .env | cut -d '=' -f2-)
+  [[ -z "$value" ]] && MISSING_VARS+=("$var")
+done
+
+if [[ ${#MISSING_VARS[@]} -ne 0 ]]; then
+  echo "[✗] The following required values are missing from .env:"
+  for var in "${MISSING_VARS[@]}"; do
+    echo "    - $var"
+  done
+  exit 1
+fi
+
+# Make all scripts in bin/ and lib/ executable
+chmod +x bin/*.sh
+chmod +x lib/*.sh
+
+# Future: Interactive setup can go here
+# ./bin/setup-interactive.sh
+
+echo "[✓] All monitoring scripts are executable."
+echo "[✓] Environment file validated."
+echo "[✓] Install script completed."

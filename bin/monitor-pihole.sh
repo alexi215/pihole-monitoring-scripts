@@ -6,7 +6,7 @@ source "$(dirname "$0")/../.env"
 # Load helper function
 source "$(dirname "$0")/../lib/telegram.sh"
 
-#  Akward: we define a variable, before determining if we need to use it at all.
+#  Awkward: we define a variable, before determining if we need to use it at all.
 DATE_STR=$(date)
 
 # Check Pi-hole status

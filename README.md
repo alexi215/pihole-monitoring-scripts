@@ -11,14 +11,13 @@ This project fills the gap between a fire-and-forget Pi-hole setup and a more op
 
 Without alerts, a failed Pi-hole often goes unnoticed until DNS stops working or ad blocking vanishes — leaving users annoyed or admins unaware of silent failures.
 
-This project strikes a healthy balance:
+**This project strives to strike a healthy balance**:
 
-- 🛡️  Applies critical security updates automatically  
-- 🕵️  Monitors service uptime without excess noise  
-- 📬 Sends concise reports and **failure** alerts via Telegram  
+- 🛡  **Confidently deploy unattended security updates** for Debian, Raspian, etc. using raspiBackup
+- 🕵️  **Monitors service uptime** without excess noise.
+- 📬 **Sends concise reports and failure alerts via Telegram**. Also reminds users to update and upgrade their RPi operating system.
 
 It helps keep your Pi-hole running *and* trusted — without turning you into a full-time sysadmin.
-
 ---
 
 ## 📦 Features

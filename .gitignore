@@ -1,0 +1,20 @@
+# Never commit your secrets
+.env
+
+# macOS system files
+.DS_Store
+
+# Backup or swap files
+*~
+*.swp
+*.bak
+
+# Log files
+*.log
+
+# Python cache if you ever add scripts
+__pycache__/
+*.pyc
+
+# Nano or micro temp files
+*.save

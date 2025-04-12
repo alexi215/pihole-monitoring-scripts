@@ -18,6 +18,7 @@ Without alerts, a failed Pi-hole often goes unnoticed until DNS stops working or
 - 📬 **Sends concise reports and failure alerts via Telegram**. Also reminds users to update and upgrade their RPi operating system.
 
 It helps keep your Pi-hole running *and* trusted — without turning you into a full-time sysadmin.
+
 ---
 
 ## 📦 Features

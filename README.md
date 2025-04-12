@@ -55,7 +55,7 @@ pihole-monitoring-scripts/
 ## 📌 Prerequisites
 
 - Pi-hole must be installed and running
-- `raspiBackup` should be installed, configured, and tested
+- `raspiBackup` must be installed and fully configured, including a working backup destination.
 - A backup destination (e.g. USB or SD card) must be mounted
 - A Telegram bot and chat ID must be created and configured
 
@@ -106,6 +106,7 @@ This will:
 
 ### Features & Logic
 - [ ] Optionally generate alerts for **successful** backups
+- [ ] Replace device variable with more extensible path variable
 - [ ] Create test message scripts for:
   - Down alerts
   - Quarterly reports

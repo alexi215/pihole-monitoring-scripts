@@ -28,6 +28,17 @@ if [[ ${#MISSING_VARS[@]} -ne 0 ]]; then
   exit 1
 fi
 
+# Add @reboot cron job for reboot alerts (if not already added)
+REBOOT_CRON="@reboot $SCRIPT_DIR/bin/alert-on-reboot.sh"
+CRON_EXISTS=$(crontab -l 2>/dev/null | grep -F "$REBOOT_CRON" || true)
+
+if [[ -z "$CRON_EXISTS" ]]; then
+  (crontab -l 2>/dev/null; echo "$REBOOT_CRON") | crontab -
+  echo "[✓] Cron job added to send reboot alerts on Pi-hole restarts."
+else
+  echo "[✓] Cron job for reboot alerts already exists."
+fi
+
 # Make all scripts in bin/ and lib/ executable
 chmod +x bin/*.sh
 chmod +x lib/*.sh

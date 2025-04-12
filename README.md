@@ -35,6 +35,7 @@ It helps keep your Pi-hole running *and* trusted — without turning you into a 
 - 🔐 **Centralized `.env` configuration**  
   All secrets and host details are stored in a single `.env` file for easy management.
 
+
 ---
 
 ## 📁 Project Structure

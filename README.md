@@ -67,7 +67,7 @@ pihole-monitoring-scripts/
 ### 1. Clone or copy the project folder to your Pi
 
 ```bash
-git clone https://github.com/<username>/pihole-monitoring-scripts.git ~/pihole-monitoring-scripts
+git clone https://github.com/alexi215/pihole-monitoring-scripts.git ~/pihole-monitoring-scripts
 cd ~/pihole-monitoring-scripts
 ```
 

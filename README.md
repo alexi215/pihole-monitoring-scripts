@@ -81,7 +81,7 @@ nano .env
 Fill in the following:
 
 ```env
-TELEGRAM_BOT_TOKEN="your_bot_token"
+TELEGRAM_TOKEN="your_bot_token"
 TELEGRAM_CHAT_ID="your_chat_id"
 PIHOLE_HOSTNAME="your_pihole_name"
 ```

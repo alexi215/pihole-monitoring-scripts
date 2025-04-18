@@ -8,8 +8,23 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-source "$SCRIPT_DIR/../.env"
-source "$SCRIPT_DIR/../lib/telegram.sh"
+# Load .env and Telegram helper
+ENV_FILE="$SCRIPT_DIR/../.env"
+TELEGRAM_HELPER="$SCRIPT_DIR/../lib/telegram.sh"
+
+if [[ ! -f "$ENV_FILE" ]]; then
+  echo "❌ Missing .env file at $ENV_FILE"
+  exit 1
+fi
+
+if [[ ! -f "$TELEGRAM_HELPER" ]]; then
+  echo "❌ Missing telegram.sh helper at $TELEGRAM_HELPER"
+  exit 1
+fi
+
+# shellcheck source=/dev/null
+source "$ENV_FILE"
+source "$TELEGRAM_HELPER"
 
 print_title() {
   echo -e "\n\e[1;34m==> $1\e[0m"
@@ -21,15 +36,15 @@ send_telegram "✅ *Pi-hole Monitoring Test*\nThis is a test alert from *$PIHOLE
 
 # Test 2: Fake Pi-hole down alert
 print_title "Testing FTL Alert (Simulated)"
-/bin/bash "$SCRIPT_DIR/monitor-pihole.sh"
+bash "$SCRIPT_DIR/monitor-pihole.sh"
 
-# Test 3: Reboot alert (simulated trigger)
+# Test 3: Reboot alert (simulated trigger)"
 print_title "Testing Reboot Alert (Simulated)"
-/bin/bash "$SCRIPT_DIR/alert-on-reboot.sh"
+bash "$SCRIPT_DIR/alert-on-reboot.sh"
 
-# Test 4: Quarterly report send (simulated)
+# Test 4: Quarterly report send (simulated)"
 print_title "Testing Quarterly Status Report"
-/bin/bash "$SCRIPT_DIR/quarterly-report.sh"
+bash "$SCRIPT_DIR/quarterly-report.sh"
 
 # Test 5: Check mount path
 print_title "Checking Mount Status"

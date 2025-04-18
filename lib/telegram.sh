@@ -14,12 +14,10 @@ fi
 
 send_telegram() {
   local message="$1"
-  local escaped_message
-  escaped_message=$(printf '%s' "$message" | sed 's/"/\\"/g')
 
-  # Send and show any errors
-  curl -v -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+  curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
     -d "chat_id=${TELEGRAM_CHAT_ID}" \
-    -d "text=${escaped_message}" \
-    -d "parse_mode=Markdown"
+    -d "text=${message}" \
+    -d "parse_mode=Markdown" \
+    || echo "⚠️  Telegram API call failed"
 }

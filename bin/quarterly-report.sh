@@ -41,4 +41,4 @@ MSG="📋 *Quarterly Status Report* for *$PIHOLE_HOSTNAME*
 $VERSIONS
 "
 
-send_telegram "$MSG"
+send_telegram "$MSG" || echo "[!] Failed to send message"

@@ -15,7 +15,7 @@ fi
 # Verify required values exist in .env
 MISSING_VARS=()
 
-for var in TELEGRAM_BOT_TOKEN TELEGRAM_CHAT_ID PIHOLE_HOSTNAME; do
+for var in TELEGRAM_TOKEN TELEGRAM_CHAT_ID PIHOLE_HOSTNAME; do
   value=$(grep "^$var=" .env | cut -d '=' -f2-)
   [[ -z "$value" ]] && MISSING_VARS+=("$var")
 done

@@ -37,6 +37,9 @@ send_telegram "✅ *Pi-hole Monitoring Test*\nThis is a test alert from *$PIHOLE
 # Test 2: Fake Pi-hole down alert
 print_title "Testing FTL Alert (Simulated)"
 bash "$SCRIPT_DIR/monitor-pihole.sh"
+sudo systemctl stop pihole-FTL
+/bin/bash "$SCRIPT_DIR/monitor-pihole.sh"
+sudo systemctl start pihole-FTL
 
 # Test 3: Reboot alert (simulated trigger)"
 print_title "Testing Reboot Alert (Simulated)"
